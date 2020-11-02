@@ -32,7 +32,7 @@ class WGAN(object):
 
         with tf.control_dependencies(self.variables['ops_d']):
             self.optimizer_d = tf.compat.v1.train.AdamOptimizer( \
-                self.learning_rate, name='Adam_d').minimize(\
+                self.learning_rate/5, name='Adam_d').minimize(\
                 self.losses['loss_d'], var_list=self.variables['params_d'])
 
         with tf.control_dependencies(self.variables['ops_g']):
@@ -56,17 +56,19 @@ class WGAN(object):
         summary_list = []
         if(training):
             try:
-                _, summaries = self.sess.run([self.optimizer_d, self.summaries], \
-                    feed_dict=feed_tr, options=self.run_options, run_metadata=self.run_metadata)
-                summary_list.append(summaries)
+                for _ in range(5):
+                    _, summaries = self.sess.run([self.optimizer_d, self.summaries], \
+                        feed_dict=feed_tr, options=self.run_options, run_metadata=self.run_metadata)
+                    summary_list.append(summaries)
 
                 _, summaries = self.sess.run([self.optimizer_g, self.summaries], \
                     feed_dict=feed_tr, options=self.run_options, run_metadata=self.run_metadata)
                 summary_list.append(summaries)
             except:
-                _, summaries = self.sess.run([self.optimizer_d, self.summaries], \
-                    feed_dict=feed_tr)
-                summary_list.append(summaries)
+                for _ in range(5):
+                    _, summaries = self.sess.run([self.optimizer_d, self.summaries], \
+                        feed_dict=feed_tr)
+                    summary_list.append(summaries)
 
                 _, summaries = self.sess.run([self.optimizer_g, self.summaries], \
                     feed_dict=feed_tr)
