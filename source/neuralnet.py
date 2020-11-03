@@ -203,8 +203,8 @@ class WGAN(object):
             rs = tf.compat.v1.reshape(conv3_2, shape=[self.batch_size, int(7*7*64)], \
                 name="%s_rs" %(name))
             e = self.layer.fully_connected(x=rs, c_out=1, \
-                batch_norm=True, training=self.training, \
-                activation='sigmoid', name="%s_fc1" %(name), verbose=verbose)
+                batch_norm=False, training=self.training, \
+                activation=None, name="%s_fc1" %(name), verbose=verbose)
 
             return e
 
@@ -241,7 +241,7 @@ class WGAN(object):
                 filter_size=[ksize, ksize, 16, 16], batch_norm=True, training=self.training, \
                 activation=activation, name="%s_conv3_2" %(name), verbose=verbose)
             d = self.layer.conv2d(x=convt3_2, stride=1, padding='SAME', \
-                filter_size=[ksize, ksize, 16, self.channel], batch_norm=True, training=self.training, \
-                activation="sigmoid", name="%s_conv3_3" %(name), verbose=verbose)
+                filter_size=[ksize, ksize, 16, self.channel], batch_norm=False, training=self.training, \
+                activation='sigmoid', name="%s_conv3_3" %(name), verbose=verbose)
 
             return d
