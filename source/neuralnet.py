@@ -56,19 +56,17 @@ class WGAN(object):
         summary_list = []
         if(training):
             try:
-                for _ in range(5):
-                    _, summaries = self.sess.run([self.optimizer_d, self.summaries], \
-                        feed_dict=feed_tr, options=self.run_options, run_metadata=self.run_metadata)
-                    summary_list.append(summaries)
+                _, summaries = self.sess.run([self.optimizer_d, self.summaries], \
+                    feed_dict=feed_tr, options=self.run_options, run_metadata=self.run_metadata)
+                summary_list.append(summaries)
 
                 _, summaries = self.sess.run([self.optimizer_g, self.summaries], \
                     feed_dict=feed_tr, options=self.run_options, run_metadata=self.run_metadata)
                 summary_list.append(summaries)
             except:
-                for _ in range(5):
-                    _, summaries = self.sess.run([self.optimizer_d, self.summaries], \
-                        feed_dict=feed_tr)
-                    summary_list.append(summaries)
+                _, summaries = self.sess.run([self.optimizer_d, self.summaries], \
+                    feed_dict=feed_tr)
+                summary_list.append(summaries)
 
                 _, summaries = self.sess.run([self.optimizer_g, self.summaries], \
                     feed_dict=feed_tr)
@@ -141,7 +139,7 @@ class WGAN(object):
         self.losses['mean_real'] = tf.reduce_mean(self.variables['d_real'])
         self.losses['mean_fake'] = tf.reduce_mean(self.variables['d_fake'])
 
-        self.losses['loss_d'] = self.losses['mean_real'] - self.losses['mean_fake']
+        self.losses['loss_d'] = -(self.losses['mean_real'] - self.losses['mean_fake'])
         self.losses['loss_g'] = -self.losses['mean_fake']
 
         self.variables['params_d'], self.variables['params_g'] = [], []
