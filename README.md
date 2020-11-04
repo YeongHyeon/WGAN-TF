@@ -2,18 +2,39 @@
 =====
 TensorFlow implementation of Wasserstein GAN (WGAN) with MNIST dataset.  
 
-## Architecture
+### Training algorithm
 <div align="center">
-  <img src="./figures/wgan_alg.png" width="500">  
+  <img src="./figures/algorithm.png" width="500">  
   <p>The algorithm for training WGAN [1].</p>
 </div>
 
+### WGAN architecture
 <div align="center">
   <img src="./figures/wgan.png" width="500">  
-  <p>The architecture and loss functions of WGAN [1].</p>
+  <p>The architecture of WGAN [1].</p>
+</div>
+
+### Graph in TensorBoard
+<div align="center">
+  <img src="./figures/graph.png" width="650">  
+  <p>Graph of WGAN.</p>
 </div>
 
 ## Results
+
+### Training Procedure
+<div align="center">
+  <p>
+    <img src="./figures/WGAN_loss_d.svg" width="300">
+    <img src="./figures/WGAN_loss_g.svg" width="300">
+  </p>
+  <p>Loss graph in the training procedure. </br> Each graph shows loss of the discriminator and loss of the generator respectively.</p>
+</div>
+
+### Test Procedure
+|z:2|z:2 (latent space walking)|z:64|
+|:---:|:---:|:---:|
+|<img src="./figures/z02.png" width="300">|<img src="./figures/z02_lw.png" width="300">|<img src="./figures/z64.png" width="300">|
 
 
 ## Environment
