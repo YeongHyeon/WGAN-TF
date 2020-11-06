@@ -32,10 +32,17 @@ TensorFlow implementation of Wasserstein GAN (WGAN) with MNIST dataset.
 </div>
 
 ### Test Procedure
-|z:2|z:2 (latent space walking)|z:64|
-|:---:|:---:|:---:|
-|<img src="./figures/z02.png" width="300">|<img src="./figures/z02_lw.png" width="300">|<img src="./figures/z64.png" width="300">|
+<div align="center">
 
+|z:2|z:2 (latent space walking)|
+|:---:|:---:|
+|<img src="./figures/z02.png" width="300">|<img src="./figures/z02_lw.png" width="300">|
+
+|z:64|z:128|
+|:---:|:---:|
+|<img src="./figures/z64.png" width="300">|<img src="./figures/z128.png" width="300">|
+
+</div>
 
 ## Environment
 * Python 3.7.4  
